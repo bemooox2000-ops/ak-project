@@ -1,19 +1,35 @@
-// التحقق من حالة تسجيل الدخول
-auth.onAuthStateChanged(async (user) => {
-    if (!user) {
-        window.location.href = 'admin-login.html';
-        return;
+// بيانات تجريبية للنظام
+let adminData = {
+    students: [
+        { id: "12345", name: "أحمد محمد", group: "المجموعة الأولى" },
+        { id: "12346", name: "سارة أحمد", group: "المجموعة الثانية" },
+        { id: "12347", name: "محمود علي", group: "المجموعة الأولى" },
+        { id: "12348", name: "فاطمة محمد", group: "المجموعة الثانية" }
+    ],
+    groups: [
+        { name: "المجموعة الأولى", count: 15 },
+        { name: "المجموعة الثانية", count: 12 }
+    ],
+    grades: {
+        "12345": Array.from({length: 32}, (_, i) => ({
+            week: i + 1,
+            score: Math.floor(Math.random() * 21) + 30,
+            maxScore: 50,
+            notes: "أداء جيد"
+        })),
+        "12346": Array.from({length: 32}, (_, i) => ({
+            week: i + 1,
+            score: Math.floor(Math.random() * 21) + 30,
+            maxScore: 50,
+            notes: "ممتاز"
+        }))
     }
-    
-    // التحقق من الصلاحيات
-    const adminDoc = await db.collection('admins').doc(user.uid).get();
-    if (!adminDoc.exists) {
-        auth.signOut();
-        return;
-    }
-    
-    // تحميل البيانات
-    loadInitialData();
+};
+
+// تحميل البيانات الأولية
+document.addEventListener('DOMContentLoaded', function() {
+    updateDashboard();
+    setupNavigation();
 });
 
 // تحميل البيانات من Firebase
