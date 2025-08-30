@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نتائج الطلاب</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h3>استعلام عن النتيجة</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="searchForm" class="mb-4">
+                            <div class="mb-3">
+                                <label for="studentNumber" class="form-label">رقم الجلوس</label>
+                                <input type="text" class="form-control" id="studentNumber" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">بحث</button>
+                        </form>
+                        
+                        <div id="resultSection" style="display: none;">
+                            <h4 class="text-center mb-4">نتيجة الطالب</h4>
+                            <div class="student-info mb-4">
+                                <p><strong>اسم الطالب: </strong><span id="studentName"></span></p>
+                                <p><strong>رقم الجلوس: </strong><span id="studentId"></span></p>
+                                <p><strong>المجموعة: </strong><span id="groupName"></span></p>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>الأسبوع</th>
+                                            <th>الدرجة</th>
+                                            <th>الدرجة الكلية</th>
+                                            <th>النسبة</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="gradesTable"></tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th>المجموع</th>
+                                            <td id="totalScore" colspan="3"></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-auth-compat.js"></script>
+    <!-- تهيئة Firebase -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
